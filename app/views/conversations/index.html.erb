@@ -1,0 +1,18 @@
+<div class="container account">
+  <h1>Your messages</h1>
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="nav nav-pills nav-stacked mail-folder">
+      <%= mailbox_section 'inbox', @box %>
+      <%= mailbox_section 'sent', @box %>
+      </ul>
+    </div>
+
+    <div class="col-md-9">
+      <ul class="list-group">
+        <%= render partial: 'conversations/conversation', collection: @conversations %>
+      </ul>
+
+    </div>
+  </div>
+ </div>

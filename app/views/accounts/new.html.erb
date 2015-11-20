@@ -1,0 +1,22 @@
+<div class="container account">
+<h1>Create new account</h1>
+
+<% if @account.errors.any? %>
+  <div class="alert alert-warning" role="alert">
+    <h2>The following errors occured. Please try again.</h2>
+      <ul>
+        <% @account.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+  </div>
+<% end %>
+<br>
+<%= render "accounts/form" %>
+
+
+<small><%= link_to "Go to your dashboard", dashboard_index_path %></small><br>
+<small><%= link_to "Go to home page", root_path %></small>
+
+</div>
+

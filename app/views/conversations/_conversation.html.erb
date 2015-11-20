@@ -1,0 +1,11 @@
+<li class="list-group-item">
+      <% conversation.participants.each do |participant| %>
+        <% if participant != current_user and @box == 'inbox' %>
+           From: <strong><%= participant.account.first_name %> <%= participant.account.last_name %></strong>
+        <% elsif participant != current_user and @box == 'sent' %>
+           To: <strong><%= participant.account.first_name %> <%= participant.account.last_name %></strong>
+        <% end %>
+      <% end %>
+      <span> | </span>
+      <%= link_to conversation.subject, conversation_path(conversation) %>
+</li>

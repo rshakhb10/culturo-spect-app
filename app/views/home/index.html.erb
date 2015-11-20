@@ -1,0 +1,22 @@
+
+<div class="container logo">
+
+  <div class="jumbotron">
+    <h1 id="logo">CulturoSpect</h1>
+    <p class="lead">Connect with people from other culture!</p>
+	
+    <% if !user_signed_in? %>
+	    <%= link_to "Log in", new_user_session_path, class: "btn btn-success" %>
+	    <i>Already a member?</i>
+	
+      <br>
+    	
+      <%= link_to "Sign up", new_user_registration_path, class: "btn btn-success" %>
+      <i>First time here? Sign up!</i>
+    <% end %>
+  </div>
+
+</div>
+  
+<%= render 'home/info' %>
+

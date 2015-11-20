@@ -1,0 +1,39 @@
+<div class="container account">
+<h1>Conversation</h1>
+<p class="lead">with
+<% @conversation.participants.each do |participant| %>
+        <% if participant != current_user%>
+           <strong><%= participant.account.first_name %> <%= participant.account.last_name %></strong>
+        <% end %>
+<% end %>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><%= @conversation.subject %></div>
+
+  <div class="panel-body">
+    <div class="container">
+      <% @conversation.receipts_for(current_user).each do |receipt| %>
+        <% message = receipt.message %>
+
+          <p>
+            <small>
+              <strong><%= message.sender.account.first_name%></strong> <i>says at <%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %></i>
+            </small>
+          </p>
+          
+          <p><%= message.body %></p>
+
+      <% end %>
+      
+      <%= form_tag reply_conversation_path(@conversation), method: :post do %>
+        <div class="form-group">
+          <%= text_area_tag 'body', nil, cols: 3, class: 'form-control', placeholder: 'Your message...', required: true %>
+        </div>
+        <%= submit_tag "Send", class: 'btn btn-success' %>
+      <% end %>
+
+
+    </div>
+  </div>
+</div>
+</div>

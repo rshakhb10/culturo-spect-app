@@ -1,0 +1,131 @@
+<div class="container welcome">
+</div>
+
+<div class="container">
+  <% if not @account.nil? %>
+    <h1>Welcome <%= @account.first_name%>!</h1>
+    <%= link_to "View account information", account_path(@account) %>
+
+  <hr>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <% if flash[:search_error] %>
+          <div class="alert alert-warning">
+            <p>
+              <span class="glyphicon glyphicon-warning-sign"></span>  
+                <%= flash[:search_error] %>
+            </p>
+          </div>
+        <% end %>
+
+        <div class="panel search">
+  	      <div class="panel-heading search-heading">
+  		      <strong>Search</strong>
+  	      </div>
+
+  	      <div class="panel-body search-body">
+  		      <p>Search people based on location and/or keyword</p>
+            <%= form_tag("/dashboard/search", method: "get") do %>
+              <div class="form-group">
+                <%= label_tag(:city, "City") %>
+                <%= text_field_tag :city %>
+              </div>
+
+              <p class="text-left">  -- or --</p>
+
+              <div class="form-group">
+                <%= label_tag(:zipcode, "Zipcode") %>
+                <%= text_field_tag :zipcode, nil, :class => "input-mini" %>
+                <%= label_tag(:distance, "Distance")%>
+                <%= select_tag(:distance, options_for_select([5, 10, 25, 50]))%> miles
+              </div>
+
+              <hr>
+
+              <div class="form-group">
+                <%= label_tag(:keyword, "Keyword") %>
+                <%= text_field_tag :keyword %>
+              </div>
+
+
+              <div class="form-group">
+                <%= label_tag(:user_type, "Who are you looking for?")%>
+                <%= select_tag(:user_type, options_for_select([['All', 1], ['New arrivals', 2], ['Locals', 3]]))%>
+              </div>
+
+              <div class="form-group">
+                <%= submit_tag "Search!", class: "btn btn-success" %>
+              </div>   
+  		      <% end %>
+  	      </div>
+        </div>
+      </div>
+
+      <div class="col-md-7">
+        <div class="panel">
+          <div class="panel-heading search-heading">
+            <strong>Who's new to the site?</strong>
+          </div>
+          <div>
+
+            <% @last_accounts.each do |last_acc| %>
+
+              <div class="panel">
+                <div class="panel-heading last-accounts-heading box-shadow--8dp">
+                    <div class="row">
+                    <div class="col-md-6">
+                      
+                       <!-- <a role="button" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#<%=last_acc%>" aria-expanded="false" aria-controls="collapse<%=last_acc%>">-->
+
+                        <span class="glyphicon glyphicon-check" class="alert alert-success"></span>
+                      
+                        <strong>
+                          <%= last_acc.first_name %> <%= last_acc.last_name %>, <%= last_acc.age %>, from <%= last_acc.city %>
+                        </strong>
+                
+                      
+                    </div>
+                    
+                    <div class="col-md-6">
+                      <p class="text-right">
+                        <button class="btn btn-success box-shadow--4dp">
+                          <%= link_to new_message_path(recipient_id: last_acc.user.id) do%>
+                            <span class="text-right">
+                            <span class="glyphicon glyphicon-envelope"></span> 
+                            <i>Contact them?</i></span>
+                          <%end %>
+                        </button> 
+                      </p> 
+                    </div>
+
+                  </div>
+
+                </div>
+
+               <!-- <div id="collapse<%= last_acc %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapse<%= last_acc %>">-->
+                  <div class="panel-body box-shadow--8dp last-accounts-body">
+                    <%= last_acc.story %>
+                  </div>
+
+              </div>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <% else %>
+    <h1>Welcome, Stranger!</h1>
+    <p class="lead">
+      <mark id="no-info">Seems like you have not filled your account information just yet. Tell others about yourself and why you are interested in joining!
+      </mark>
+    </p>
+    <%= link_to "Fill in account information", new_account_path %>
+  <% end %>
+</div>
+

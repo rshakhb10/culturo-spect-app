@@ -1,0 +1,70 @@
+<div class="container">
+
+<h1>Search results</h1>
+
+<% if @accounts.size != 0 %>
+
+<div class="container">
+  <% if @accounts.size == 1 %>
+    <p class="lead">Found <mark><%= @accounts.size %> person</mark> matching your criteria.</p>
+  <% else %>
+        <p class="lead">Found <mark><%= @accounts.size %> people</mark> matching your criteria.</p>
+  <% end %>
+  <% @accounts.each do |account| %>
+    <div class="row">
+      <div class="col-md-5">
+      <div class="panel">
+
+  	    <div class="panel-heading search-result-heading box-shadow--8dp">
+          <div class="row">
+
+            <div class="col-md-6">
+              <p>
+              <strong>
+                <%= account.first_name %> <%= account.last_name %>, <%= account.age %>
+              </strong> 
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <p class="text-right">
+                <button class="btn btn-success box-shadow--4dp">
+                <%= link_to new_message_path(recipient_id: account.user.id) do%>
+                  <span class="text-right">
+                  <span class="glyphicon glyphicon-envelope"></span> 
+                  <i>Contact them?</i>
+                  </span>
+                <%end %>
+                </button> 
+              </p> 
+            </div>
+          </div>
+  	    </div>
+
+  	    <div class="panel-body search-result-body box-shadow--8dp">
+  	 	    <p>
+            <strong>Lives in <%= account.city%></strong>
+
+            <% if account.new_arrival %>
+              <mark class="user-category"><i>New to the area.</i></mark>
+            <% else %>
+              <mark class="user-category"><i>Local in the area.</i></mark>
+            <% end %>
+          </p>
+
+  	 	    <p><%= account.story %></p>
+  	    </div>
+      </div>
+      </div>  
+    </div>
+  <% end %>
+<% else %>
+  <p class="lead"><mark class="user_category">No people</mark> were found based on your search criteria... Don't give up and try again!</p>
+<% end %>
+
+<br/>
+<br/>
+
+<%= link_to "Go to your dashboard", dashboard_index_path %>
+
+</div>

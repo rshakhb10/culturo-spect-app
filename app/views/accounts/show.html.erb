@@ -1,0 +1,45 @@
+<div class="container account">
+<div class="panel">
+  <h1><%= @account.first_name%> <%= @account.last_name %></h1>
+  <hr>
+  <p>
+  	<strong>Date of birth: </strong>
+  	<%= @account.date_of_birth.strftime("%d %B %Y") %>
+  </p>
+
+  <p>
+  	<strong>City: </strong>
+  	<%= @account.city %>
+  </p>
+
+  <p>
+  	<strong>Zipcode: </strong>
+  	<%= @account.zipcode %>
+  </p>
+
+  <p>
+  	<strong>Country: </strong>
+  	<%= @account.country %>
+  </p>
+
+  <p>
+  	<strong>Are you a new arrival?</strong>
+  	<% if @account.new_arrival %>
+  	Yes
+  	<% else %>
+  	No
+  	<% end %>
+  </p>
+
+  <p>
+  	<strong>Your story: </strong>
+  	<%= @account.story %>
+  </p>
+
+
+</div>
+
+  <%= link_to "Update your information", edit_account_path %><br>
+  <%= link_to "Go to your dashboard", dashboard_index_path %>
+</div>
+

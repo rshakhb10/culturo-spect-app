@@ -1,0 +1,221 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets"
+@import "bootstrap"
+
+
+html
+  min-height: 100%
+  position: relative
+
+
+body
+  margin-bottom: 200px /* to make up for the footer */
+
+.notice
+  margin: 0px
+  color: orange
+
+
+.alert
+  margin: 0px
+
+.container
+  margin: 0 auto
+  min-width: 100%
+
+
+.sign-panel
+  background-color: #454545
+  color: white
+  font-size: 18px
+  margin-bottom: 0px
+  padding: 10px
+
+.navbar
+  margin-bottom: 0px
+
+.logo
+  background-image: url("Stone_forest.jpg")
+  background-repeat: no-repeat
+  background-position: top center
+  background-color: #83CEFF
+  background-size: cover
+  height: 530px
+
+/* Home jumbotron related */
+.jumbotron
+  background-color: #F79F7D
+  margin-top: 90px
+  margin-left: auto
+  margin-right: auto 
+  max-width: 500px
+
+.jumbotron .btn
+  border-color: white
+  margin-bottom: 1px
+  margin-right: 5px
+  text-align: center
+  width: 90px
+
+
+.jumbotron .lead
+  color: #8B8B8B
+
+
+#logo
+  color: white
+/**************/
+
+
+/* About section */
+.about hr
+  border-color: #E9964C
+
+.about
+  margin-top: 20px
+
+.about h1
+  color: #E9964C
+  font: Lucida Garde
+  margin-bottom: 8px
+  text-align: center
+
+.about p
+  color: grey
+  font-size: 18px
+  font: Lucida Garde
+  text-align: center
+
+.about a
+  color: #E9964C
+
+.about a:hover
+  color: #E9964C
+  text-decoration: none
+/**************/
+
+/* Sign up form */
+.signup
+  background-color: #F9AD6A
+  border-color: white
+  border-style: solid
+  margin-left: auto
+  margin-right: auto
+  width: 50px 
+
+.signup h2
+  color: #E9964C
+
+/**************/
+
+
+/* Account form */
+.account
+  /*background-color: #FCE5CF*/
+  color: grey
+  font-size: 15px
+  margin-bottom: 20px
+  margin-top: 30px
+  padding-left: 60px
+
+.account hr
+  border-color: #E9964C
+
+.account h1
+  color: #E9964C
+  margin-bottom: 35px
+
+/**************/
+
+/* Dashboard */
+.welcome
+  background-image: url("panorama.jpg")
+  background-repeat: no-repeat
+  background-position: top center
+  background-color: #83CEFF
+  background-size: cover
+  height: 130px
+
+
+.search
+  width: 350px
+  margin: 0 auto
+
+.search-heading
+  background-color: black
+  color: white
+
+.search-body
+  background-color: #F1EEEC
+  margin: 0 auto
+ 
+.search-body hr
+  border-color: #8C521C
+  border-width: 1.5px
+
+.last-accounts-body, .search-result-body
+  background-color: #F2EEE6
+  border-color: #EABF62
+  border-width: 1.5px
+
+.last-accounts-heading, .search-result-heading
+  background-color: #FCE5CF
+  color: #8C521C
+
+.last-accounts-heading a, .search-result-heading a
+  color: white
+
+/*.search-result-heading*/
+ /* background-color: #EAA749*/
+
+/*.search-result-body*/
+/*  background-color: #F6E5CE*/
+
+.user-category
+  background-color: #C8FAAE
+
+
+#no-info
+  background-color: #B7E1ED
+
+.box-shadow--4dp
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2)
+
+
+.box-shadow--8dp
+  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2)
+
+/**************/
+/* Mailbox */
+
+
+/**************/
+
+/* Footer */
+footer 
+  background-color: #D5F2FB
+  bottom: 0
+  color: grey
+  font-size: 90%
+  height: 100px
+  opacity: 0.9
+  padding-top: 20px
+  position: absolute
+  text-align: center
+  width: 100%
+
