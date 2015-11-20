@@ -38,7 +38,7 @@
               <div class="form-group">
                 <%= label_tag(:zipcode, "Zipcode") %>
                 <%= text_field_tag :zipcode, nil, :class => "input-mini" %>
-                <%= label_tag(:distance, "Distance")%>
+                <br/><%= label_tag(:distance, "Distance")%>
                 <%= select_tag(:distance, options_for_select([5, 10, 25, 50]))%> miles
               </div>
 
