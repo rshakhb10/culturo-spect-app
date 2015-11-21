@@ -15,30 +15,30 @@ class DashboardController < ApplicationController
 	      	@accounts = Account.where('city like ?', params[:city])
 
 		  elsif params[:user_type] == "2"
-		    @accounts = Account.where('city like ? and new_arrival is ?', params[:city], true)
+		    @accounts = Account.where('city like ? and new_arrival=?', params[:city], true)
 
 		  elsif params[:user_type] == "3"
-		    @accounts = Account.where('city like ? and new_arrival is ?', params[:city], false)
+		    @accounts = Account.where('city like ? and new_arrival=?', params[:city], false)
 		  end
         
         elsif params[:city].present? and params[:keyword].present? and !params[:zipcode].present?
           if params[:user_type] == "1"
             @accounts = Account.where('city like ? and story like ?', params[:city], "%"+params[:keyword]+"%")
           elsif params[:user_type] == "2"
-		    @accounts = Account.where('city like ? and new_arrival is ? and story like ?', params[:city], true, "%"+params[:keyword]+"%")
+		    @accounts = Account.where('city like ? and new_arrival=? and story like ?', params[:city], true, "%"+params[:keyword]+"%")
 
 		  elsif params[:user_type] == "3"
-		    @accounts = Account.where('city like ? and new_arrival is ? and story like ?', params[:city], false, "%"+params[:keyword]+"%")
+		    @accounts = Account.where('city like ? and new_arrival=? and story like ?', params[:city], false, "%"+params[:keyword]+"%")
           end
 
         elsif !params[:city].present? and params[:keyword].present? and !params[:zipcode].present?
           if params[:user_type] == "1"
             @accounts = Account.where('story like ?', "%"+params[:keyword]+"%")
           elsif params[:user_type] == "2"
-		    @accounts = Account.where('new_arrival is ? and story like ?', true, "%"+params[:keyword]+"%")
+		    @accounts = Account.where('new_arrival=? and story like ?', true, "%"+params[:keyword]+"%")
 
 		  elsif params[:user_type] == "3"
-		    @accounts = Account.where('new_arrival is ? and story like ?', false, "%"+params[:keyword]+"%")
+		    @accounts = Account.where('new_arrival=? and story like ?', false, "%"+params[:keyword]+"%")
           end	
 	
 	    elsif params[:city].present? and params[:zipcode].present?
@@ -49,18 +49,18 @@ class DashboardController < ApplicationController
           if params[:user_type] == "1"
 	    	@accounts = Account.near(params[:zipcode], params[:distance])
 	      elsif params[:user_type] == "2"
-	        @accounts = (Account.near(params[:zipcode], params[:distance]).where('new_arrival is ?', true))
+	        @accounts = (Account.near(params[:zipcode], params[:distance]).where('new_arrival=?', true))
 	      elsif params[:user_type] == "3"
-	        @accounts = (Account.near(params[:zipcode], params[:distance]).where('new_arrival is ?', false))
+	        @accounts = (Account.near(params[:zipcode], params[:distance]).where('new_arrival=?', false))
           end
 
 	    elsif !params[:city].present? and params[:keyword].present? and params[:zipcode].present?
           if params[:user_type] == "1"
 	    	@accounts = Account.near(params[:zipcode], params[:distance]).where('story like ?', "%"+params[:keyword]+"%")
 	      elsif params[:user_type] == "2"
-	        @accounts = Account.near(params[:zipcode], params[:distance]).where('new_arrival is ? and story like ?', true, "%"+params[:keyword]+"%")
+	        @accounts = Account.near(params[:zipcode], params[:distance]).where('new_arrival=? and story like ?', true, "%"+params[:keyword]+"%")
 	      elsif params[:user_type] == "3"
-	        @accounts = Account.near(params[:zipcode], params[:distance]).where('new_arrival is ? and story like ?', false, "%"+params[:keyword]+"%")
+	        @accounts = Account.near(params[:zipcode], params[:distance]).where('new_arrival=? and story like ?', false, "%"+params[:keyword]+"%")
           end
 
 	    elsif !params[:city].present? and !params[:keyword].present? and !params[:zipcode].present?
