@@ -12,23 +12,23 @@ class DashboardController < ApplicationController
 
 		if params[:city].present? and !params[:keyword].present? and !params[:zipcode].present?
 	      if params[:user_type] == "1"
-	      	@accounts = Account.where('lower(city) like ?', params[:city].downcase)
+	      	@accounts = Account.where('lower(city) like ?', "%"+params[:city]+"%".downcase)
 
 		  elsif params[:user_type] == "2"
-		    @accounts = Account.where('lower(city) like ? and new_arrival=?', params[:city].downcase, true)
+		    @accounts = Account.where('lower(city) like ? and new_arrival=?', "%"+params[:city]+"%".downcase, true)
 
 		  elsif params[:user_type] == "3"
-		    @accounts = Account.where('lower(city) like ? and new_arrival=?', params[:city].downcase, false)
+		    @accounts = Account.where('lower(city) like ? and new_arrival=?', "%"+params[:city]+"%".downcase, false)
 		  end
         
         elsif params[:city].present? and params[:keyword].present? and !params[:zipcode].present?
           if params[:user_type] == "1"
-            @accounts = Account.where('lower(city) like ? and lower(story) like ?', params[:city].downcase, "%"+params[:keyword].downcase+"%")
+            @accounts = Account.where('lower(city) like ? and lower(story) like ?', "%"+params[:city]+"%".downcase, "%"+params[:keyword].downcase+"%")
           elsif params[:user_type] == "2"
-		    @accounts = Account.where('lower(city) like ? and new_arrival=? and lower(story) like ?', params[:city].downcase, true, "%"+params[:keyword].downcase+"%")
+		    @accounts = Account.where('lower(city) like ? and new_arrival=? and lower(story) like ?', "%"+params[:city]+"%".downcase, true, "%"+params[:keyword].downcase+"%")
 
 		  elsif params[:user_type] == "3"
-		    @accounts = Account.where('lower(city) like ? and new_arrival=? and lower(story) like ?', params[:city].downcase, false, "%"+params[:keyword].downcase+"%")
+		    @accounts = Account.where('lower(city) like ? and new_arrival=? and lower(story) like ?', "%"+params[:city]+"%".downcase, false, "%"+params[:keyword].downcase+"%")
           end
 
         elsif !params[:city].present? and params[:keyword].present? and !params[:zipcode].present?
