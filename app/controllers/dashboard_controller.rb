@@ -12,33 +12,33 @@ class DashboardController < ApplicationController
 
 		if params[:city].present? and !params[:keyword].present? and !params[:zipcode].present?
 	      if params[:user_type] == "1"
-	      	@accounts = Account.where('city like ?', params[:city])
+	      	@accounts = Account.where('lower(city) like ?', params[:city].downcase)
 
 		  elsif params[:user_type] == "2"
-		    @accounts = Account.where('city like ? and new_arrival=?', params[:city], true)
+		    @accounts = Account.where('lower(city) like ? and new_arrival=?', params[:city].downcase, true)
 
 		  elsif params[:user_type] == "3"
-		    @accounts = Account.where('city like ? and new_arrival=?', params[:city], false)
+		    @accounts = Account.where('lower(city) like ? and new_arrival=?', params[:city].downcase, false)
 		  end
         
         elsif params[:city].present? and params[:keyword].present? and !params[:zipcode].present?
           if params[:user_type] == "1"
-            @accounts = Account.where('city like ? and story like ?', params[:city], "%"+params[:keyword]+"%")
+            @accounts = Account.where('lower(city) like ? and lower(story) like ?', params[:city].downcase, "%"+params[:keyword].downcase+"%")
           elsif params[:user_type] == "2"
-		    @accounts = Account.where('city like ? and new_arrival=? and story like ?', params[:city], true, "%"+params[:keyword]+"%")
+		    @accounts = Account.where('lower(city) like ? and new_arrival=? and lower(story) like ?', params[:city].downcase, true, "%"+params[:keyword].downcase+"%")
 
 		  elsif params[:user_type] == "3"
-		    @accounts = Account.where('city like ? and new_arrival=? and story like ?', params[:city], false, "%"+params[:keyword]+"%")
+		    @accounts = Account.where('lower(city) like ? and new_arrival=? and lower(story) like ?', params[:city].downcase, false, "%"+params[:keyword].downcase+"%")
           end
 
         elsif !params[:city].present? and params[:keyword].present? and !params[:zipcode].present?
           if params[:user_type] == "1"
-            @accounts = Account.where('story like ?', "%"+params[:keyword]+"%")
+            @accounts = Account.where('lower(story) like ?', "%"+params[:keyword].downcase+"%")
           elsif params[:user_type] == "2"
-		    @accounts = Account.where('new_arrival=? and story like ?', true, "%"+params[:keyword]+"%")
+		    @accounts = Account.where('new_arrival=? and lower(story) like ?', true, "%"+params[:keyword].downcase+"%")
 
 		  elsif params[:user_type] == "3"
-		    @accounts = Account.where('new_arrival=? and story like ?', false, "%"+params[:keyword]+"%")
+		    @accounts = Account.where('new_arrival=? and lower(story) like ?', false, "%"+params[:keyword].downcase+"%")
           end	
 	
 	    elsif params[:city].present? and params[:zipcode].present?
@@ -56,11 +56,11 @@ class DashboardController < ApplicationController
 
 	    elsif !params[:city].present? and params[:keyword].present? and params[:zipcode].present?
           if params[:user_type] == "1"
-	    	@accounts = Account.near(params[:zipcode], params[:distance]).where('story like ?', "%"+params[:keyword]+"%")
+	    	@accounts = Account.near(params[:zipcode], params[:distance]).where('lower(story) like ?', "%"+params[:keyword].downcase+"%")
 	      elsif params[:user_type] == "2"
-	        @accounts = Account.near(params[:zipcode], params[:distance]).where('new_arrival=? and story like ?', true, "%"+params[:keyword]+"%")
+	        @accounts = Account.near(params[:zipcode], params[:distance]).where('new_arrival=? and lower(story) like ?', true, "%"+params[:keyword].downcase+"%")
 	      elsif params[:user_type] == "3"
-	        @accounts = Account.near(params[:zipcode], params[:distance]).where('new_arrival=? and story like ?', false, "%"+params[:keyword]+"%")
+	        @accounts = Account.near(params[:zipcode], params[:distance]).where('new_arrival=? and lower(story) like ?', false, "%"+params[:keyword].downcase+"%")
           end
 
 	    elsif !params[:city].present? and !params[:keyword].present? and !params[:zipcode].present?
