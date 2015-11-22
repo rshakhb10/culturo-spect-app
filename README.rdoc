@@ -5,8 +5,8 @@ It was written as a final project for General Assembly (GA) Back-end web develop
 The front end is currently minimal. 
 
 It requires these additional gems:
-mailboxer -- for messaging
-geocoder -- for searching people based on zipcode
-devise -- for authentication
+  mailboxer -- for messaging
+  geocoder -- for searching people based on zipcode
+  devise -- for authentication
 
 
