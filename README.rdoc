@@ -1,6 +1,6 @@
 == README
 
-The application is deplyed on heroku here: https://culturo-spect-app.herokuapp.com
+The application is deployed on heroku here: https://culturo-spect-app.herokuapp.com
 It was written as a final project for General Assembly (GA) Back-end web development class in Ruby on Rails. 
 The front end is currently minimal. 
 
